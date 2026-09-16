@@ -1,0 +1,56 @@
+[
+  {
+    "id": "it-act-69a",
+    "title": "Information Technology Act, 2000 — Section 69A",
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/1999/1/A2000-21%20%281%29.pdf",
+    "locator": "Section 69A",
+    "jurisdiction": "India",
+    "scope": "Potential statutory context; a status code does not establish the legal basis.",
+    "text": "Section 69A provides for public-access blocking directions on specified grounds, with written reasons and prescribed safeguards. Telemetry cannot identify the issuing authority or establish that this power was used."
+  },
+  {
+    "id": "shreya-singhal",
+    "title": "Shreya Singhal v. Union of India (2015)",
+    "url": "https://api.sci.gov.in/jonew/ropor/rop/all/250446.pdf",
+    "locator": "Paragraphs 109–111",
+    "jurisdiction": "India",
+    "scope": "Section 69A safeguards; applicability requires the underlying direction.",
+    "text": "The judgment upheld Section 69A and the blocking rules, discussing written reasons, a hearing for an identified originator or intermediary, committee review, and judicial review. The procedural route and emergency exceptions need document-based examination. An HTTP response cannot prove whether a hearing occurred."
+  },
+  {
+    "id": "blocking-rules-2009",
+    "title": "Information Technology Blocking Rules, 2009",
+    "url": "https://www.meity.gov.in/static/uploads/2024/10/91f628cb778f94e76df356bc3fd3ac60.pdf",
+    "locator": "Rules 8, 9, 14 and 16",
+    "jurisdiction": "India",
+    "scope": "Ordinary and emergency procedures differ; confidentiality matters.",
+    "text": "The rules address examination and notice, emergency blocking, review, and confidentiality of requests and actions. Absence of a publicly located order is not by itself proof of a procedural breach. This system does not search for orders or notices."
+  },
+  {
+    "id": "anuradha-bhasin",
+    "title": "Anuradha Bhasin v. Union of India (2020)",
+    "url": "https://api.sci.gov.in/supremecourt/2019/28817/28817_2019_2_1501_19350_Judgement_10-Jan-2020.pdf",
+    "locator": "Paragraph 152, conclusions",
+    "jurisdiction": "India",
+    "scope": "Internet suspension context; not an automatic publication rule for every URL block.",
+    "text": "The Court addressed publication of the orders at issue, proportionality, and review of internet suspension restrictions. Its shutdown context must be distinguished from individual URL blocking under Section 69A. Network telemetry alone cannot determine necessity or proportionality."
+  },
+  {
+    "id": "intermediary-rules",
+    "title": "Intermediary Guidelines and Digital Media Ethics Code Rules, 2021",
+    "url": "https://upload.indiacode.nic.in/showfile?actid=AC_CEN_45_76_00001_200021_1517807324077&filename=information_technology_%28intermediary_guidelines_and_digital_media_ethics_code%29_rules%2C_2021_%28updated_06.04.2023%29-.pdf&type=rule",
+    "locator": "Rules 3 and 4; source compilation updated 6 April 2023",
+    "jurisdiction": "India",
+    "scope": "Historical source snapshot; later amendments and litigation require independent checking.",
+    "text": "The rules set out intermediary due diligence and grievance mechanisms, with additional obligations for specified intermediaries. Platform moderation, account suspension, and government blocking require different factual inquiries. No current-law completeness claim is made for this source snapshot."
+  },
+  {
+    "id": "echr-10",
+    "title": "ECHR Article 10 — Freedom of expression",
+    "url": "https://ks.echr.coe.int/en/web/echr-ks/article-10",
+    "locator": "Article 10; official case-law guide",
+    "jurisdiction": "Comparative only",
+    "scope": "Comparative research context; not binding Indian law.",
+    "text": "Article 10 protects expression and receipt of information. Restrictions engage questions of legal prescription, legitimate aim, and necessity in a democratic society. These standards are comparative context for an Indian report, not a domestic legal test or a finding about a reported event."
+  }
+]

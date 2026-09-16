@@ -1,0 +1,50 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.ruff_cache/
+.uv-cache/
+.uv-python/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+.uv-cache/
+.uv-python/
+.npm-cache/
+.browser-check/
+venv/
+env/
+
+# JavaScript / frontend
+node_modules/
+.npm-cache/
+dist/
+build/
+.next/
+.nuxt/
+.vite/
+*.tsbuildinfo
+
+# Logs and local databases
+*.log
+*.sqlite
+*.sqlite3
+*.sqlite-*
+*.sqlite3-*
+
+# Editor and OS files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea/
+.DS_Store
+Thumbs.db
