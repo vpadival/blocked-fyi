@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { color-scheme: dark; font-family: Inter, Arial, sans-serif; background: #101214; color: #f4f2ed; }
+  body { @apply m-0 min-w-0 antialiased; }
+  * { @apply border-line; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
+  button, a { touch-action: manipulation; }
+  :focus-visible { outline: 2px solid #d3ee83; outline-offset: 4px; }
+  ::selection { background: #d3ee83; color: #101214; }
+  button:disabled { @apply cursor-not-allowed opacity-40; }
+  select { @apply pr-8; }
+}
+
+@layer components {
+  .page-width { @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12; }
+  .eyebrow { @apply font-mono text-xs uppercase tracking-[.17em] text-muted; }
+  .page-title { @apply font-editorial text-4xl tracking-tight sm:text-5xl; }
+  .panel { @apply rounded-lg border border-line bg-panel; }
+  .button { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-line px-4 py-2.5 text-sm font-semibold transition-colors disabled:pointer-events-none; }
+  .button-primary { @apply button border-signal bg-signal text-ink hover:bg-lime-200; }
+  .button-secondary { @apply button bg-panel text-paper hover:border-slate-500 hover:bg-slate-800; }
+  .field { @apply block min-h-11 w-full rounded-md border border-line bg-ink px-3 py-2.5 text-base text-paper placeholder:text-slate-500 focus:border-signal focus:outline-none focus:ring-1 focus:ring-signal; }
+  .field-label { @apply mb-2 block text-sm font-medium text-slate-200; }
+  .table-scroll { @apply relative overflow-x-auto; }
+  .data-table { @apply w-full border-collapse text-left text-sm; }
+  .data-table th { @apply border-y border-line bg-ink/40 px-5 py-4 font-mono text-xs font-normal uppercase tracking-wider text-muted; }
+  .data-table td { @apply border-b border-line/70 px-5 py-5 align-top; }
+  .data-table tbody tr:last-child td { @apply border-b-0; }
+  .text-link { @apply inline-flex items-center gap-2 text-sm font-medium text-signal underline-offset-4 hover:underline; }
+  .section-number { @apply flex h-9 w-9 shrink-0 items-center justify-center rounded border border-line bg-ink font-mono text-sm text-signal; }
+}
+
+@media print {
+  :root { color-scheme: light; background: white; color: #111; }
+  body { background: white !important; color: #111 !important; font-size: 11pt; }
+  .no-print, header, footer, .skip-link { display: none !important; }
+  .page-width { max-width: none !important; padding: 0 !important; }
+  .panel, .print-notice { background: white !important; border: 1px solid #bbb !important; }
+  main *, .panel * { color: #111 !important; text-shadow: none !important; box-shadow: none !important; }
+  .table-scroll { overflow: visible !important; }
+  table { min-width: 0 !important; table-layout: fixed; font-size: 8pt !important; }
+  th, td { padding: 6px !important; overflow-wrap: anywhere; }
+  thead { display: table-header-group; }
+  tr, .print-keep { break-inside: avoid; }
+  h1, h2, h3 { break-after: avoid; }
+  a { overflow-wrap: anywhere; }
+  .source-link::after { content: ' (' attr(href) ')'; display: block; font-size: 8pt; font-weight: normal; }
+  @page { size: A4 landscape; margin: 14mm; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
