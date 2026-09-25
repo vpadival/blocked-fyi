@@ -2,6 +2,14 @@
 
 A LexHack 2026 civic evidence prototype: **Report → Verify → Corroborate → Legal retrieval → Evidence dossier**. FastAPI, SQLAlchemy 2, Pydantic 2, local FAISS, and React/TypeScript. SQLite persists evidence and the verification queue. No paid API or model key is required.
 
+## Demo video
+
+[![Blocked.fyi prototype demo — click to open the video](brag-output/brag.jpg)](brag-output/brag.mp4)
+
+**[Watch the demo (MP4)](brag-output/brag.mp4)** — a 20-second walkthrough of citizen intake, multi-vantage telemetry, and the evidence dossier.
+
+The video uses **simulated data**. Network responses are synthetic, and the legal research shown is not a determination of legality or legal advice.
+
 ## Run locally
 
 Prerequisites: Python 3.12–3.14, [uv](https://docs.astral.sh/uv/), Node.js 20.19+ or 22+, and npm.

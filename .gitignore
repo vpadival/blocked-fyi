@@ -1,3 +1,9 @@
+# Locally installed video-generation tools
+/.agents/skills/brag/
+/.agents/skills/brag-slim/
+
+# Temporary video-rendering files
+/brag-output/work/
 # Environment and secrets
 .env
 .env.*
