@@ -47,6 +47,30 @@ cd frontend && npm run dev
 
 Set `EMBEDDED_WORKER=false` in `backend/.env`, restart the API, and run `./scripts/run-worker.ps1` (or `uv run python -m backend.worker`). Both processes must share `DATABASE_URL`. The committed `REPORTED` row is the durable job. Atomic claims prevent duplicate ownership; five-minute leases recover interrupted jobs. Results and audits commit together. Failed jobs become inconclusive with a visible error. Submit a new lead to repeat a completed or failed check.
 
+## Deploy the demo on Render
+
+[`render.yaml`](render.yaml) defines a React Static Site and a single FastAPI Web Service in Singapore with an embedded worker, a health check, and a 1 GB persistent disk for SQLite. **The backend compute and disk are paid resources.** Review Render's estimate before applying the Blueprint. This configuration deploys in **mock mode**; hosting does not provide real regional probe infrastructure.
+
+1. Push this repository, including `render.yaml`, `.python-version`, `uv.lock`, and `frontend/package-lock.json`, to GitHub. Do not commit actual `.env` files or local databases.
+2. In [Render](https://dashboard.render.com/), select **New → Blueprint**, connect the repository and select the branch containing these files. Render reads `render.yaml` from the repository root.
+3. Render prompts for `CORS_ORIGINS` (backend) and `VITE_API_BASE_URL` (frontend). If the service URLs are not assigned yet, use `https://placeholder.invalid` and `https://placeholder.invalid/api/v1` respectively for this initial build. These deliberately nonfunctional placeholders must be replaced in the next step.
+4. Copy the actual public URLs from the two created services; Render may append a suffix to their names. In the backend's **Environment** settings, set `CORS_ORIGINS` to the frontend origin, for example `https://blocked-fyi-web-xxxx.onrender.com` (no trailing slash or path). Save and redeploy the backend. In the Static Site's **Environment** settings, set `VITE_API_BASE_URL` to the backend URL plus `/api/v1`, for example `https://blocked-fyi-api-xxxx.onrender.com/api/v1`. Save and rebuild/deploy the Static Site. Vite embeds this public value at build time, so a rebuild is required after changing it.
+5. Visit the backend's `/api/v1/health`: expect `status: "ok"`, `probe_mode: "mock"`, and `embedded_worker: true`. Open the frontend, submit an example-domain lead, wait for its simulated dossier, and refresh the dossier URL directly. Try JSON export and printing. Restart the backend and confirm that the report remains.
+
+The Blueprint includes the `/*` → `/index.html` rewrite for React Router. Local development continues to use the Vite `/api` proxy; hosted builds use `VITE_API_BASE_URL`. When adding a custom frontend domain, update `CORS_ORIGINS` to that origin (or a comma-separated list without spaces). Changing the backend domain also requires rebuilding the frontend with its new API URL.
+
+For optional example dossiers, open the **backend service's Shell** after deployment and run:
+
+```sh
+.venv/bin/python -m backend.seed
+```
+
+This inserts nine explicitly simulated examples and can be run again without duplicating them. Do not run seeding in a build or pre-deploy command: Render's persistent disk is available only to the running service. The database is otherwise initialized automatically at startup. Local reports are not uploaded during deployment.
+
+Keep one backend instance and one Uvicorn worker for this SQLite deployment. Only `/var/data` is persistent; preserve database backups before destructive storage changes. A free backend cannot attach this disk and would lose reports on restart/redeployment. The demo configuration does not add production abuse controls or live proxies; the production limitations below still apply.
+
+Configuration references: [Render Blueprints](https://render.com/docs/blueprint-spec), [persistent disks](https://render.com/docs/disks), and [Python versions](https://render.com/docs/python-version).
+
 ## Mock versus live
 
 `PROBE_MODE=auto` with no `VANTAGE_CONFIG` uses **MockFixture** telemetry. No DNS lookup or target request occurs. Every probe, report, and dossier is marked simulated, and logs include `is_simulation=True`. `MOCK_SCENARIO` selects `regional`, `outage`, `unrestricted`, or `inconclusive`; its outcome is independent of the URL and citizen's claim. Seeded records use reserved example domains and synthetic platform labels. Simulated leads never contribute to `confirmed_blocks` or `top_flagged_domains`.

@@ -1,0 +1,42 @@
+# Creates billable backend compute and storage. Review costs before applying.
+services:
+  - type: web
+    name: blocked-fyi-api
+    runtime: python
+    region: singapore
+    plan: 0.5c-512mb
+    numInstances: 1
+    buildCommand: uv sync --frozen --no-dev
+    startCommand: .venv/bin/uvicorn backend.main:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /api/v1/health
+    disk:
+      name: evidence
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:////var/data/evidence.sqlite3
+      - key: PROBE_MODE
+        value: mock
+      - key: MOCK_SCENARIO
+        value: regional
+      - key: EMBEDDED_WORKER
+        value: "true"
+      - key: CORS_ORIGINS
+        sync: false
+
+  - type: web
+    name: blocked-fyi-web
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: VITE_API_BASE_URL
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

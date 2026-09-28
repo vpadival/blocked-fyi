@@ -21,7 +21,7 @@ export async function request(path, options = {}) {
   } catch (error) {
     if (options.signal?.aborted) throw error;
     if (error.name === 'AbortError') throw new Error('The request timed out. Check that the API is running and try again.');
-    if (error instanceof TypeError) throw new Error('Cannot reach the observatory. Check that the FastAPI server is running on port 8000.');
+    if (error instanceof TypeError) throw new Error('Cannot reach the observatory. Check your connection and try again shortly.');
     throw error;
   } finally {
     clearTimeout(timeout);
